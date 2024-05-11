@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ededed #fff;
+}
+
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: black;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ededed;
+  border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: #71b52b;
+  border-radius: 10px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  max-width: 100% !important;
+}
+
+body,
+body > app-root {
+  overflow-x: hidden !important;
+}
+
+body {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}

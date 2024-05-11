@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_addons_songs",
+  "info": {
+    "displayName": "Song",
+    "icon": "music"
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

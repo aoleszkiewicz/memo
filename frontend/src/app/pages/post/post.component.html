@@ -1,0 +1,22 @@
+<span>{{ isLoading$ | async }}</span
+><button [routerLink]="['/']">back to posts</button>
+<section class="post">
+  @if (post$ | async; as post) {
+    <div class="post-content">
+      <h2>{{ post.attributes.title }}</h2>
+      @if (post.attributes.description) {
+        <p>{{ post.attributes.description }}</p>
+      }
+      <app-author
+        [name]="post.attributes.author.data.attributes.fullName"
+        [avatar]="post.attributes.author.data.attributes.avatar.data.attributes.url"
+      ></app-author>
+      <span>{{ post.attributes.date }}</span>
+    </div>
+    <div class="post-details">
+      @if (post.attributes.comment) {
+        <app-comment [comment]="post.attributes.comment"></app-comment>
+      }
+    </div>
+  }
+</section>

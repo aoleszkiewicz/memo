@@ -1,0 +1,16 @@
+<span>{{ isLoading$ | async }}</span>
+
+<section class="posts">
+  @if (posts$ | async; as posts) {
+    @for (post of posts.data; track post.attributes.slug) {
+      <app-post-tile
+        [slug]="post.attributes.slug"
+        [title]="post.attributes.title"
+        [date]="post.attributes.date"
+        [authorName]="post.attributes.author.data.attributes.fullName"
+        [authorAvatar]="post.attributes.author.data.attributes.avatar.data.attributes.url"
+        [thumbnail]="post.attributes.thumbnail.data.attributes.url"
+      ></app-post-tile>
+    }
+  }
+</section>
