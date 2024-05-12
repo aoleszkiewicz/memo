@@ -1,12 +1,10 @@
 import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
-import { UntilDestroy } from "@ngneat/until-destroy";
-import { Store } from "@ngxs/store";
+import { Actions, ofActionSuccessful, Store } from "@ngxs/store";
 
 import { PostTileComponent } from "../../core/components/post-tile/post-tile.component";
 import { Post, PostState } from "../../core/state/post";
 
-@UntilDestroy()
 @Component({
   selector: "app-posts",
   standalone: true,
@@ -17,11 +15,15 @@ import { Post, PostState } from "../../core/state/post";
 })
 export class PostsComponent implements OnInit {
   private readonly store = inject(Store);
+  private readonly actions$ = inject(Actions);
 
-  public posts$ = this.store.select(PostState.selectPosts);
-  public isLoading$ = this.store.select(PostState.selectLoading);
+  public posts$ = this.store.select(PostState.getPosts);
 
   public ngOnInit(): void {
-    this.store.dispatch(new Post.LoadAll());
+    this.store.dispatch(new Post.GetPosts());
+
+    this.actions$.pipe(ofActionSuccessful(Post.GetPostsSuccess)).subscribe({
+      next: () => {},
+    });
   }
 }

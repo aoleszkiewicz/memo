@@ -1,5 +1,3 @@
-<span>{{ isLoading$ | async }}</span>
-
 <section class="posts">
   @if (posts$ | async; as posts) {
     @for (post of posts.data; track post.attributes.slug) {

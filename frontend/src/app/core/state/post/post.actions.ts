@@ -1,28 +1,28 @@
 // eslint-disable-next-line @typescript-eslint/no-namespace, max-classes-per-file
 export namespace Post {
-  export class LoadAll {
+  export class GetPosts {
     public static readonly type = "[Post] Load All";
   }
 
-  export class LoadAllSuccess {
+  export class GetPostsSuccess {
     public static readonly type = "[Post] Load All Success";
   }
 
-  export class LoadAllFailure {
+  export class GetPostsFailure {
     public static readonly type = "[Post] Load All Failure";
     constructor(public error: unknown) {}
   }
 
-  export class LoadOne {
+  export class GetPostBySlug {
     public static readonly type = "[Post] Load One";
     constructor(public slug: string) {}
   }
 
-  export class LoadOneSuccess {
+  export class GetPostBySlugSuccess {
     public static readonly type = "[Post] Load One Success";
   }
 
-  export class LoadOneFailure {
+  export class GetPostBySlugFailure {
     public static readonly type = "[Post] Load One Failure";
     constructor(public error: unknown) {}
   }

@@ -2,7 +2,7 @@ import { AsyncPipe } from "@angular/common";
 import { ChangeDetectionStrategy, Component, inject, OnInit } from "@angular/core";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
-import { Store } from "@ngxs/store";
+import { Actions, ofActionSuccessful, Store } from "@ngxs/store";
 import { switchMap } from "rxjs";
 
 import { AuthorComponent } from "../../core/components/author/author.component";
@@ -20,17 +20,21 @@ import { Post, PostState } from "../../core/state";
 })
 export class PostComponent implements OnInit {
   private readonly store = inject(Store);
+  private readonly actions$ = inject(Actions);
   private readonly activatedRoute$ = inject(ActivatedRoute);
 
-  public post$ = this.store.select(PostState.selectPost);
-  public isLoading$ = this.store.select(PostState.selectLoading);
+  public post$ = this.store.select(PostState.getPost);
 
   public ngOnInit(): void {
     this.activatedRoute$.params
       .pipe(
         untilDestroyed(this),
-        switchMap((params) => this.store.dispatch(new Post.LoadOne(params["slug"]))),
+        switchMap((params) => this.store.dispatch(new Post.GetPostBySlug(params["slug"]))),
       )
       .subscribe();
+
+    this.actions$.pipe(ofActionSuccessful(Post.GetPostBySlugSuccess)).subscribe({
+      next: () => {},
+    });
   }
 }

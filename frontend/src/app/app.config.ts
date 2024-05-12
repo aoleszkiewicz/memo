@@ -2,6 +2,7 @@ import { HttpClientModule, provideHttpClient, withInterceptors } from "@angular/
 import { ApplicationConfig, importProvidersFrom, isDevMode } from "@angular/core";
 import { provideRouter } from "@angular/router";
 // eslint-disable-next-line import/no-extraneous-dependencies
+import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
 import { NgxsModule } from "@ngxs/store";
 
 import { routes } from "./app.routes";
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
       NgxsModule.forRoot([PostState], {
         developmentMode: isDevMode(),
       }),
+      NgxsReduxDevtoolsPluginModule.forRoot({ disabled: !isDevMode() }),
     ),
   ],
 };

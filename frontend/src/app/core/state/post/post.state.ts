@@ -1,8 +1,10 @@
+/* eslint-disable consistent-return */
+/* eslint-disable class-methods-use-this */
 import { HttpErrorResponse } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Action, Selector, State, StateContext, StateToken } from "@ngxs/store";
-import { catchError, EMPTY, of, tap } from "rxjs";
+import { catchError, EMPTY, tap } from "rxjs";
 
 import { PostService } from "../../services/post.service";
 import { Post } from "./post.actions";
@@ -16,7 +18,6 @@ const POST_STATE_TOKEN = new StateToken<PostStateModel>("post");
     posts: { data: [], meta: {} },
     post: null,
     lastViewedPosts: { data: [], meta: {} },
-    isLoading: false,
   },
 })
 @Injectable()
@@ -24,52 +25,45 @@ export class PostState {
   private readonly postService = inject(PostService);
 
   @Selector()
-  public static selectLoading(state: PostStateModel): PostStateModel["isLoading"] {
-    return state.isLoading;
-  }
-
-  @Selector()
-  public static selectPosts(state: PostStateModel): PostStateModel["posts"] {
+  public static getPosts(state: PostStateModel): PostStateModel["posts"] {
     return state.posts;
   }
 
   @Selector()
-  public static selectPost(state: PostStateModel): PostStateModel["post"] {
+  public static getPost(state: PostStateModel): PostStateModel["post"] {
     return state.post;
   }
 
-  @Action(Post.LoadAll)
-  public loadPosts(ctx: StateContext<PostStateModel>) {
-    ctx.patchState({ isLoading: true });
-    const state = ctx.getState();
+  @Action(Post.GetPosts)
+  public getPosts(ctx: StateContext<PostStateModel>) {
+    const { posts: statePosts } = ctx.getState();
 
-    if (state.posts.data.length) {
-      ctx.patchState({ isLoading: false });
-      return of(state.posts);
+    if (statePosts.data.length > 0) {
+      ctx.dispatch(new Post.GetPostsSuccess());
+      return;
     }
 
     return this.postService.getPosts().pipe(
       tap((posts) => {
-        ctx.patchState({ posts, isLoading: false });
-        ctx.dispatch(new Post.LoadAllSuccess());
+        ctx.patchState({ posts });
+        ctx.dispatch(new Post.GetPostsSuccess());
       }),
       catchError((error: HttpErrorResponse) => {
         const { error: errorDetails } = error;
-        ctx.dispatch(new Post.LoadAllFailure(errorDetails));
+        ctx.dispatch(new Post.GetPostsFailure(errorDetails));
         return EMPTY;
       }),
     );
   }
 
-  @Action(Post.LoadOne)
-  public loadPost(ctx: StateContext<PostStateModel>, { slug }: Post.LoadOne) {
-    ctx.patchState({ isLoading: true });
+  @Action(Post.GetPostBySlug)
+  public getPost(ctx: StateContext<PostStateModel>, { slug }: Post.GetPostBySlug) {
     const state = ctx.getState();
     const { data: lastViewedPosts } = state.lastViewedPosts;
     const lastViewedPost = lastViewedPosts.find((post) => post.attributes.slug === slug);
 
     if (lastViewedPost) {
-      return ctx.patchState({ post: lastViewedPost, isLoading: false });
+      return ctx.patchState({ post: lastViewedPost });
     }
 
     return this.postService.getPost(slug).pipe(
@@ -78,13 +72,12 @@ export class PostState {
         ctx.patchState({
           post,
           lastViewedPosts: { data: [post, ...lastViewedPosts], meta: {} },
-          isLoading: false,
         });
-        ctx.dispatch(new Post.LoadOneSuccess());
+        ctx.dispatch(new Post.GetPostBySlugSuccess());
       }),
       catchError((error: HttpErrorResponse) => {
         const { error: errorDetails } = error;
-        ctx.dispatch(new Post.LoadOneFailure(errorDetails));
+        ctx.dispatch(new Post.GetPostBySlugFailure(errorDetails));
         return EMPTY;
       }),
     );
