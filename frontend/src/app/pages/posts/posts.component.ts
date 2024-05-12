@@ -23,7 +23,9 @@ export class PostsComponent implements OnInit {
     this.store.dispatch(new Post.GetPosts());
 
     this.actions$.pipe(ofActionSuccessful(Post.GetPostsSuccess)).subscribe({
-      next: () => {},
+      next: () => {
+        console.log("Posts loaded successfully!");
+      },
     });
   }
 }
