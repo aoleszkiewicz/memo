@@ -9,7 +9,7 @@ import { Component, computed, input } from "@angular/core";
   styles: "",
 })
 export class GradeComponent {
-  grade = input<number>();
+  grade = input.required<number>();
   private readonly maxGrade = 10;
   finalGrade = computed<string>(() => `${this.grade}/${this.maxGrade}`);
 }

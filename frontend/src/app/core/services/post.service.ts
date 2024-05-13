@@ -12,9 +12,12 @@ export class PostService {
   private httpClient = inject(HttpClient);
   private apiUrl = environment.apiUrl;
 
-  getPosts(): Observable<Response<SnapshotPost, true>> {
+  getPosts(page: number, limit: number): Observable<Response<SnapshotPost, true>> {
     return this.httpClient.get<Response<Post, true>>(`${this.apiUrl}/posts`, {
       params: {
+        "pagination[page]": page,
+        "pagination[pageSize]": limit,
+        sort: "date:desc",
         select: ["slug", "title", "date"],
         populate: ["author.fullName", "author.avatar", "thumbnail"],
       },

@@ -11,10 +11,10 @@ import { AuthorComponent } from "../author/author.component";
   imports: [RouterLink, AuthorComponent],
 })
 export class PostTileComponent {
-  title = input<string>();
-  thumbnail = input<string>();
-  authorName = input<string>();
-  authorAvatar = input<string>();
-  date = input<Date>();
-  slug = input<string>();
+  title = input.required<string>();
+  thumbnail = input.required<string>();
+  authorName = input.required<string>();
+  authorAvatar = input.required<string>();
+  date = input.required<Date>();
+  slug = input.required<string>();
 }

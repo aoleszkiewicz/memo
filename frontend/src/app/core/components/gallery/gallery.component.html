@@ -1,0 +1,20 @@
+<div #gallery class="gallery">
+  @for (image of images().data; track image; let index = $index) {
+    <div class="gallery-image-container">
+      <img [src]="image.attributes.url" [alt]="image.attributes.name" class="gallery-image" />
+    </div>
+  }
+</div>
+
+<app-embedded-icon name="pi-chevron-left" (click)="prev()" class="gallery-prev"></app-embedded-icon>
+<app-embedded-icon
+  name="pi-chevron-right"
+  (click)="next()"
+  class="gallery-next"
+></app-embedded-icon>
+
+<nav>
+  @for (image of images().data; track image.id; let index = $index) {
+    <div (click)="set(index)" [class.active]="currentIndex() === index"></div>
+  }
+</nav>

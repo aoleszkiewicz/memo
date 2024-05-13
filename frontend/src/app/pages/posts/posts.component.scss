@@ -11,4 +11,12 @@
   @media screen and (min-width: 1280px) {
     grid-template-columns: repeat(3, 1fr);
   }
+
+  &-load-more {
+    width: 100%;
+    background: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

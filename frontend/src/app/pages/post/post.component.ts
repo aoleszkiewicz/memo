@@ -7,6 +7,7 @@ import { switchMap } from "rxjs";
 
 import { AuthorComponent } from "../../core/components/author/author.component";
 import { CommentComponent } from "../../core/components/comment/comment.component";
+import { GalleryComponent } from "../../core/components/gallery/gallery.component";
 import { Post, PostState } from "../../core/state";
 
 @UntilDestroy()
@@ -15,8 +16,8 @@ import { Post, PostState } from "../../core/state";
   standalone: true,
   templateUrl: "./post.component.html",
   styleUrl: "./post.component.scss",
-  imports: [AsyncPipe, AuthorComponent, CommentComponent, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [AsyncPipe, AuthorComponent, CommentComponent, RouterLink, GalleryComponent],
 })
 export class PostComponent implements OnInit {
   private readonly store = inject(Store);

@@ -7,8 +7,8 @@ export type Post = {
   date: Date;
   title: string;
   description?: string;
-  images?: Media[];
-  thumbnail: Media;
+  images?: Media<"multiple">;
+  thumbnail: Media<"single">;
   comment?: string;
   songs?: string[];
 };

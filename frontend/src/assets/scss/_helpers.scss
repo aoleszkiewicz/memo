@@ -1,0 +1,23 @@
+@mixin use-screen($breakpoint) {
+  @if $breakpoint == "sm" {
+    @media (max-width: 640px) {
+      @content;
+    }
+  } @else if $breakpoint == "md" {
+    @media (min-width: 768px) and (max-width: 1023px) {
+      @content;
+    }
+  } @else if $breakpoint == "lg" {
+    @media (min-width: 1024px) and (max-width: 1279px) {
+      @content;
+    }
+  } @else if $breakpoint == "xl" {
+    @media (min-width: 1280px) and (max-width: 1535px) {
+      @content;
+    }
+  } @else if $breakpoint == "2xl" {
+    @media (min-width: 1536px) {
+      @content;
+    }
+  }
+}

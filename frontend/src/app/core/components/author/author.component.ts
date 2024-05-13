@@ -6,7 +6,7 @@ import { Component, input } from "@angular/core";
   imports: [],
   template: `
     <div class="author">
-      <img [src]="avatar()" alt="{{ name() }} avatar" class="post-tile-thumbnail" />
+      <img [src]="avatar()" alt="{{ name() }} avatar" />
       <span>{{ name() }}</span>
     </div>
   `,
@@ -21,10 +21,11 @@ import { Component, input } from "@angular/core";
       width: 2rem;
       height: 2rem;
       border-radius: 50%;
+      background: var(--accent);
     }
   }`,
 })
 export class AuthorComponent {
-  name = input<string>();
-  avatar = input<string>();
+  name = input.required<string>();
+  avatar = input.required<string>();
 }

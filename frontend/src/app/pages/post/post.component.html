@@ -1,7 +1,9 @@
-><button [routerLink]="['/']">back to posts</button>
 <section class="post">
   @if (post$ | async; as post) {
     <div class="post-content">
+      <div [routerLink]="['/']" class="post-navigator">
+        <i class="pi pi-arrow-left"></i>
+      </div>
       <h2>{{ post.attributes.title }}</h2>
       @if (post.attributes.description) {
         <p>{{ post.attributes.description }}</p>
@@ -11,8 +13,11 @@
         [avatar]="post.attributes.author.data.attributes.avatar.data.attributes.url"
       ></app-author>
       <span>{{ post.attributes.date }}</span>
+      @if (post.attributes.images) {
+        <app-gallery [images]="post.attributes.images"></app-gallery>
+      }
     </div>
-    <div class="post-details">
+    <div class="post-scroller">
       @if (post.attributes.comment) {
         <app-comment [comment]="post.attributes.comment"></app-comment>
       }

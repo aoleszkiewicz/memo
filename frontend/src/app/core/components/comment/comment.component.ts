@@ -21,5 +21,5 @@ import { Component, input } from "@angular/core";
   `,
 })
 export class CommentComponent {
-  comment = input<string>();
+  comment = input.required<string>();
 }

@@ -12,3 +12,11 @@
     }
   }
 </section>
+
+@if (pagination$ | async; as pagination) {
+  @if (!pagination.reachedMax) {
+    <div class="posts-load-more">
+      <button (click)="loadMore()">Load more Posts</button>
+    </div>
+  }
+}
