@@ -6,7 +6,21 @@ import { AuthorComponent } from "../author/author.component";
 @Component({
   selector: "app-post-tile",
   standalone: true,
-  templateUrl: "./post-tile.component.html",
+  template: `
+    <div class="post-tile">
+      <img
+        [src]="thumbnail()"
+        [alt]="title()"
+        class="post-tile-thumbnail"
+        [routerLink]="['/post', slug()]"
+      />
+      <div class="post-tile-details">
+        <h5>{{ title() }}</h5>
+        <app-author [name]="authorName()" [avatar]="authorAvatar()"></app-author>
+        <span>{{ date() }}</span>
+      </div>
+    </div>
+  `,
   styleUrls: ["./post-tile.component.scss"],
   imports: [RouterLink, AuthorComponent],
 })

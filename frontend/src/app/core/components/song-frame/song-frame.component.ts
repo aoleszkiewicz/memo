@@ -1,4 +1,4 @@
-import { Component, computed, effect, input } from "@angular/core";
+import { Component, computed, input } from "@angular/core";
 
 import { SanitizePipe } from "../../pipes/sanitize.pipe";
 
@@ -40,10 +40,4 @@ export class SongFrameComponent {
 
     return `https://open.spotify.com/embed/track/${extractedTrack[1]}?${this.themeQueryParam}`;
   });
-
-  constructor() {
-    effect(() => {
-      console.log(this.finalUrl());
-    });
-  }
 }
