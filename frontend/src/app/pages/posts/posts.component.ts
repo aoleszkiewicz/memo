@@ -39,11 +39,13 @@ export class PostsComponent implements OnInit {
       },
     });
 
-    this.actions$.pipe(untilDestroyed(this), ofActionSuccessful(Post.GetPostsReachedMaxPagination)).subscribe({
-      next: () => {
-        console.log("Reached max pagination!");
-      },
-    });
+    this.actions$
+      .pipe(untilDestroyed(this), ofActionSuccessful(Post.GetPostsReachedMaxPagination))
+      .subscribe({
+        next: () => {
+          console.log("Reached max pagination!");
+        },
+      });
   }
 
   public loadMore(): void {

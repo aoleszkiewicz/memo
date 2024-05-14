@@ -3,6 +3,7 @@
     <div class="post-content">
       <div [routerLink]="['/']" class="post-navigator">
         <i class="pi pi-arrow-left"></i>
+        <span>Posts</span>
       </div>
       <h2>{{ post.attributes.title }}</h2>
       @if (post.attributes.description) {
@@ -19,7 +20,17 @@
     </div>
     <div class="post-scroller">
       @if (post.attributes.comment) {
-        <app-comment [comment]="post.attributes.comment"></app-comment>
+        <app-expandable-content label="comment">
+          <p style="font-weight: 300">{{ post.attributes.comment }}</p>
+        </app-expandable-content>
+      }
+
+      @if (post.attributes.songs && post.attributes.songs.length > 0) {
+        <app-expandable-content label="songs">
+          @for (song of post.attributes.songs; track song) {
+            <app-song-frame [song]="song"></app-song-frame>
+          }
+        </app-expandable-content>
       }
     </div>
   }

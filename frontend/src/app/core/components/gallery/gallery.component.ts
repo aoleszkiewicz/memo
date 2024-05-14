@@ -40,6 +40,7 @@ export class GalleryComponent {
   }
 
   public set(index: number) {
+    if (this.currentIndex() === index) return;
     this.currentIndex.set(index);
   }
 }

@@ -1,8 +1,16 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .posts {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(1, 1fr);
   padding: 2.5rem 5rem;
+  max-width: 120rem;
 
   @media screen and (min-width: 1024px) {
     grid-template-columns: repeat(2, 1fr);
@@ -14,9 +22,24 @@
 
   &-load-more {
     width: 100%;
-    background: red;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    button {
+      font-size: 1.15rem;
+      padding: 1rem 2rem;
+      background-color: var(--secondary);
+      color: var(--text);
+      border: none;
+      border-radius: 2rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-weight: 500;
+
+      &:hover {
+        background-color: var(--accent);
+      }
+    }
   }
 }

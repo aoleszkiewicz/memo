@@ -10,7 +10,7 @@ export type Post = {
   images?: Media<"multiple">;
   thumbnail: Media<"single">;
   comment?: string;
-  songs?: string[];
+  songs?: { url: string }[] | any;
 };
 
 export type SnapshotPost = Omit<Post, "description" | "images" | "comment" | "songs">;

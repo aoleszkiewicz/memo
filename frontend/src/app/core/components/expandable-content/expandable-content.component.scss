@@ -1,0 +1,48 @@
+.detailer {
+  display: flex;
+  padding: 0 0.25rem;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  cursor: pointer;
+
+  span {
+    font-weight: 500;
+  }
+}
+
+.content {
+  overflow: hidden;
+  transition:
+    max-height 0.3s,
+    padding 0.3s;
+  font-weight: 400;
+
+  &.collapsed {
+    max-height: 0;
+    padding: 0;
+  }
+
+  &.expanded {
+    padding: 0.5rem 0 0.5rem 0;
+    max-height: 100rem;
+  }
+}
+
+@keyframes expand {
+  from {
+    height: 0;
+  }
+  to {
+    height: auto;
+  }
+}
+
+@keyframes collapse {
+  from {
+    height: auto;
+  }
+  to {
+    height: 0;
+  }
+}

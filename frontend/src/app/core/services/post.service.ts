@@ -18,7 +18,7 @@ export class PostService {
         "pagination[page]": page,
         "pagination[pageSize]": limit,
         sort: "date:desc",
-        select: ["slug", "title", "date"],
+        fields: ["slug", "title", "date"],
         populate: ["author.fullName", "author.avatar", "thumbnail"],
       },
     });
@@ -30,7 +30,10 @@ export class PostService {
   }> {
     return this.httpClient
       .get<Response<Post, true>>(`${this.apiUrl}/posts`, {
-        params: { populate: ["author.fullName", "author.avatar", "images"], "filters[slug][$eq]": slug },
+        params: {
+          populate: ["author.fullName", "author.avatar", "images", "songs"],
+          "filters[slug][$eq]": slug,
+        },
       })
       .pipe(map((posts) => posts.data[0]));
   }
