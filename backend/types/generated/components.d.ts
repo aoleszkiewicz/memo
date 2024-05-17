@@ -5,9 +5,10 @@ export interface AddonsSong extends Schema.Component {
   info: {
     displayName: 'Song';
     icon: 'music';
+    description: '';
   };
   attributes: {
-    link: Attribute.String & Attribute.Required;
+    url: Attribute.String & Attribute.Required;
   };
 }
 

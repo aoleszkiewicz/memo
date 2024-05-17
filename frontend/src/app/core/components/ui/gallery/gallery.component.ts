@@ -1,15 +1,15 @@
 import { JsonPipe } from "@angular/common";
 import { Component, computed, effect, ElementRef, input, signal, viewChild } from "@angular/core";
 
-import { Media } from "../../types";
-import { AuthorComponent } from "../embedded-icon/embedded-icon.component";
+import { Media } from "../../../types";
+import { EmbeddedIconComponent } from "../embedded-icon/embedded-icon.component";
 
 @Component({
   selector: "app-gallery",
   standalone: true,
   templateUrl: "./gallery.component.html",
   styleUrl: "./gallery.component.scss",
-  imports: [JsonPipe, AuthorComponent],
+  imports: [JsonPipe, EmbeddedIconComponent],
 })
 export class GalleryComponent {
   images = input.required<Media<"multiple">>();

@@ -2,11 +2,12 @@
   "collectionName": "components_addons_songs",
   "info": {
     "displayName": "Song",
-    "icon": "music"
+    "icon": "music",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "link": {
+    "url": {
       "type": "string",
       "required": true
     }

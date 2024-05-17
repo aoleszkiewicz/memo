@@ -1,11 +1,13 @@
 @import "primeicons/primeicons.css";
 
 :root {
-  --text: #0b0c0a;
-  --background: #fafaf9;
-  --primary: #858f75;
-  --secondary: #b3c1b3;
-  --accent: #94a897;
+  --text: #080707;
+  --background: #f7f5f3;
+  --background-gradient: linear-gradient(220.55deg, #7cf7ff 0%, #4b73ff 100%);
+  --primary: #6c60db;
+  --secondary: #c3dfdf;
+  --secondary-opacity: rgba(195, 223, 223, 0.5);
+  --accent: #d3e9e9;
 }
 
 *,
@@ -35,7 +37,7 @@
 }
 
 *::-webkit-scrollbar-thumb:active {
-  background-color: #71b52b;
+  // background-color: #71b52b;
   border-radius: 10px;
 }
 
@@ -46,10 +48,15 @@ html {
 html,
 body {
   font-size: 16px;
+  font-family: "Inter", sans-serif;
+  font-variation-settings: "slnt" 0;
+  font-optical-sizing: auto;
   font-weight: 400;
-  font-family: "Poppins", sans-serif;
-  max-width: 100% !important;
-  background: var(--background);
+  font-style: normal;
+  max-width: 1440px !important;
+  min-height: 100vh;
+  background: var(--background-gradient) no-repeat;
+  background-size: contain;
   color: var(--text);
 }
 

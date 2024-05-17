@@ -1,6 +1,6 @@
 import { Component, computed, input } from "@angular/core";
 
-import { SanitizePipe } from "../../pipes/sanitize.pipe";
+import { SanitizePipe } from "../../../pipes/sanitize.pipe";
 
 const FALLBACK_SONG_URL =
   "https://open.spotify.com/track/4PTG3Z6ehGkBFwjybzWkR8?si=513e81b9098c4e9b";

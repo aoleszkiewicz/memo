@@ -1,22 +1,29 @@
-<section class="posts">
-  @if (posts$ | async; as posts) {
-    @for (post of posts.data; track post.attributes.slug) {
-      <app-post-tile
-        [slug]="post.attributes.slug"
-        [title]="post.attributes.title"
-        [date]="post.attributes.date"
-        [authorName]="post.attributes.author.data.attributes.fullName"
-        [authorAvatar]="post.attributes.author.data.attributes.avatar.data.attributes.url"
-        [thumbnail]="post.attributes.thumbnail.data.attributes.url"
-      ></app-post-tile>
+<section class="posts-wrapper">
+  <app-search-bar class="posts-search"></app-search-bar>
+  <div class="posts">
+    @if (posts$ | async; as posts) {
+      @for (post of posts.data; track post.attributes.slug) {
+        <app-post-tile
+          [slug]="post.attributes.slug"
+          [title]="post.attributes.title"
+          [date]="post.attributes.date"
+          [authorName]="post.attributes.author.data.attributes.fullName"
+          [authorAvatar]="post.attributes.author.data.attributes.avatar.data.attributes.url"
+          [thumbnail]="post.attributes.thumbnail.data.attributes.url"
+        ></app-post-tile>
+      }
+    }
+  </div>
+
+  @if (pagination$ | async; as pagination) {
+    @if (!pagination.reachedMax) {
+      <app-button
+        (click)="loadMore()"
+        type="primary"
+        size="large"
+        [icon]="loading() ? 'pi-spin pi-spinner' : 'pi-plus'"
+        label="Load more"
+      ></app-button>
     }
   }
 </section>
-
-@if (pagination$ | async; as pagination) {
-  @if (!pagination.reachedMax) {
-    <div class="posts-load-more">
-      <button (click)="loadMore()">Load more Posts</button>
-    </div>
-  }
-}

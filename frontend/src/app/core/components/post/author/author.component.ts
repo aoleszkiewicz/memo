@@ -23,6 +23,16 @@ import { Component, input } from "@angular/core";
       border-radius: 50%;
       background: var(--accent);
     }
+
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      @media (max-width: 540px) {
+        max-width: 7rem;
+      }
+    }
   }`,
 })
 export class AuthorComponent {

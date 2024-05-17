@@ -28,6 +28,6 @@ import { Component, input } from "@angular/core";
     }
   `,
 })
-export class AuthorComponent {
+export class EmbeddedIconComponent {
   name = input.required<string>();
 }

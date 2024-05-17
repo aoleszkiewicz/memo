@@ -5,10 +5,10 @@ import { UntilDestroy, untilDestroyed } from "@ngneat/until-destroy";
 import { Actions, ofActionSuccessful, Store } from "@ngxs/store";
 import { switchMap } from "rxjs";
 
-import { AuthorComponent } from "../../core/components/author/author.component";
-import { ExpandableContentComponent } from "../../core/components/expandable-content/expandable-content.component";
-import { GalleryComponent } from "../../core/components/gallery/gallery.component";
-import { SongFrameComponent } from "../../core/components/song-frame/song-frame.component";
+import { AuthorComponent } from "../../core/components/post/author/author.component";
+import { ExpandableContentComponent } from "../../core/components/ui/expandable-content/expandable-content.component";
+import { GalleryComponent } from "../../core/components/ui/gallery/gallery.component";
+import { SongFrameComponent } from "../../core/components/ui/song-frame/song-frame.component";
 import { Post, PostState } from "../../core/state";
 
 @UntilDestroy()
