@@ -6,7 +6,7 @@ import { Component, input } from "@angular/core";
   standalone: true,
   imports: [NgClass],
   template: `
-    <button [ngClass]="[size(), type()]">
+    <button [ngClass]="[size(), type()]" [class.icon-only]="iconOnly()">
       @if (icon()) {
         <i class="pi" [ngClass]="icon()"></i>
       }
@@ -60,6 +60,10 @@ import { Component, input } from "@angular/core";
         &.small {
           padding: 0.5rem 0.65rem;
 
+          &.icon-only {
+            padding: 0.5rem !important;
+          }
+
           span, i {
             font-size: 1rem;
           }
@@ -67,6 +71,10 @@ import { Component, input } from "@angular/core";
 
         &.medium {
           padding: 0.7rem 0.85rem;
+
+          &.icon-only {
+            padding: 0.7rem !important;
+          }
 
           span, i {
             font-size: 1.1rem;
@@ -76,6 +84,10 @@ import { Component, input } from "@angular/core";
         &.large {
           border-radius: 1rem;
           padding: 1rem 1.1rem;
+
+          &.icon-only {
+            padding: 1rem !important;
+          }
 
           span, i {
             font-size: 1.15rem;

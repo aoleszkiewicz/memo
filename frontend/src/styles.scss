@@ -53,7 +53,6 @@ body {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  max-width: 1440px !important;
   min-height: 100vh;
   background: var(--background-gradient) no-repeat;
   background-size: contain;
@@ -63,4 +62,8 @@ body {
 body,
 body > app-root {
   overflow-x: hidden !important;
+}
+
+body > app-root {
+  max-width: 1440px !important;
 }

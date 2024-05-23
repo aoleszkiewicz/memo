@@ -1,0 +1,68 @@
+version: '3'
+services:
+  backend:
+    container_name: strapi_prod
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile.prod
+      args:
+        - NODE_ENV=production
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_HOST: postgres
+      DATABASE_NAME: ${DATABASE_NAME_PRODUCTION}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      NODE_ENV: production
+    volumes:
+      - ./backend/config:/opt/app/config
+      - ./backend/src:/opt/app/src
+      - ./backend/package.json:/opt/package.json
+      - ./backend/package-lock.json:/opt/package-lock.json
+      - ./backend/.env:/opt/app/.env
+    ports:
+      - "1337:1337"
+    networks:
+      - production-memo-network
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: postgres_prod
+    image: postgres
+    platform: linux/amd64
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME_PRODUCTION}
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - production-memo-data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+    networks:
+      - production-memo-network
+
+  frontend:
+    container_name: web_app_prod
+    restart: always
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    ports:
+      - "80:80"
+    networks:
+      - production-memo-network
+    depends_on:
+      - backend
+
+volumes:
+    production-memo-data:
+
+networks:
+  production-memo-network:
+    driver: bridge

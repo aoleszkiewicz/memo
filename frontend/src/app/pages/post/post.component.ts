@@ -6,6 +6,7 @@ import { Actions, ofActionSuccessful, Store } from "@ngxs/store";
 import { switchMap } from "rxjs";
 
 import { AuthorComponent } from "../../core/components/post/author/author.component";
+import { ButtonComponent } from "../../core/components/ui/button/button.component";
 import { ExpandableContentComponent } from "../../core/components/ui/expandable-content/expandable-content.component";
 import { GalleryComponent } from "../../core/components/ui/gallery/gallery.component";
 import { SongFrameComponent } from "../../core/components/ui/song-frame/song-frame.component";
@@ -25,6 +26,7 @@ import { Post, PostState } from "../../core/state";
     GalleryComponent,
     ExpandableContentComponent,
     SongFrameComponent,
+    ButtonComponent,
   ],
 })
 export class PostComponent implements OnInit {
@@ -32,9 +34,9 @@ export class PostComponent implements OnInit {
   private readonly actions$ = inject(Actions);
   private readonly activatedRoute$ = inject(ActivatedRoute);
 
-  public post$ = this.store.select(PostState.getPost);
+  post$ = this.store.select(PostState.getPost);
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.activatedRoute$.params
       .pipe(
         untilDestroyed(this),
