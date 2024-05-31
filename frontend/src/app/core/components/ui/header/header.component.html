@@ -1,0 +1,11 @@
+<header>
+  <nav>
+    @for (item of menuItems(); track item) {
+      <a [routerLink]="item.url" routerLinkActive="active">{{ item.name | titlecase }}</a>
+    }
+  </nav>
+  <section class="auth-controller">
+    <app-button routerLink="/login" label="Login" type="primary" size="large"></app-button>
+    <app-button routerLink="/signup" label="Sign Up" size="large"></app-button>
+  </section>
+</header>

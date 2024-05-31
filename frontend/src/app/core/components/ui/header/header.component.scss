@@ -1,0 +1,38 @@
+header {
+  position: sticky;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(247, 245, 243, 0.5);
+  height: fit-content;
+  width: fit-content;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+
+  nav,
+  section.auth-controller {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  nav > a {
+    cursor: pointer;
+    color: var(--text);
+    font-weight: 400;
+    font-size: 1.1rem;
+    text-decoration: none;
+
+    &.active {
+      font-weight: 500;
+      color: var(--primary);
+    }
+  }
+}

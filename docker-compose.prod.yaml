@@ -1,7 +1,8 @@
-version: '3'
+version: '3.8'
 services:
   backend:
     container_name: strapi_prod
+    image: memo-backend:prod
     build: 
       context: ./backend
       dockerfile: Dockerfile.prod
@@ -49,12 +50,15 @@ services:
 
   frontend:
     container_name: web_app_prod
+    image: memo-frontend:prod
     restart: always
     build:
       context: ./frontend
       dockerfile: Dockerfile.prod
+    volumes:
+      - production-memo-data:/opt/web
     ports:
-      - "80:80"
+      - "8000:80"
     networks:
       - production-memo-network
     depends_on:

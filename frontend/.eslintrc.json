@@ -3,7 +3,8 @@
   "ignorePatterns": ["projects/**/*"],
   "plugins": ["unused-imports", "simple-import-sort", "prettier"],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": __dirname,
   },
   "overrides": [
     {

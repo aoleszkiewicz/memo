@@ -1,7 +1,8 @@
-version: '3'
+version: '3.8'
 services:
   backend:
     container_name: strapi_dev
+    image: memo-backend:dev
     build: 
       context: ./backend
       dockerfile: Dockerfile
@@ -47,9 +48,13 @@ services:
 
   frontend:
     container_name: web_app_dev
+    image: memo-frontend:dev
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - "4200:4200"
     depends_on:
