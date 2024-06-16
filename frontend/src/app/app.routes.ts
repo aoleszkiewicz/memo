@@ -15,6 +15,10 @@ export const routes: Routes = [
     loadComponent: () => import("./pages/post/post.component").then((m) => m.PostComponent),
   },
   {
+    path: "auth",
+    loadChildren: () => import("./pages/auth/auth.routes").then((m) => m.routes),
+  },
+  {
     path: "**",
     redirectTo: "posts",
   },

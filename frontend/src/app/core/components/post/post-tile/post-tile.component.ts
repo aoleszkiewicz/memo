@@ -14,15 +14,15 @@ import { ContentIndicatorComponent } from "../content-indicator/content-indicato
       <div class="post-tile-details">
         <span class="date">{{ date() }}</span>
         <h3>{{ title() }}</h3>
-        <app-content-indicator></app-content-indicator>
+        <app-content-indicator />
         <div class="post-tile-spacer">
-          <app-author [name]="authorName()" [avatar]="authorAvatar()"></app-author>
+          <app-author [name]="authorName()" [avatar]="authorAvatar()" />
           <app-button
             [routerLink]="['/post', slug()]"
             type="primary"
             label="Open"
             icon="pi-external-link"
-          ></app-button>
+          />
         </div>
       </div>
     </div>

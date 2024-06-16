@@ -1,0 +1,53 @@
+<section class="signup">
+  <h3>Save your day!</h3>
+  <div class="divider"></div>
+  <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+    <app-input
+      name="firstName"
+      label="Firstname"
+      type="text"
+      [required]="true"
+      [control]="firstName"
+      [errors]="getErrors(firstName)"
+      [showErrors]="showErrors()"
+    />
+    <app-input
+      name="lastName"
+      [control]="lastName"
+      label="Lastname"
+      type="text"
+      [required]="true"
+      [errors]="getErrors(lastName)"
+      [showErrors]="showErrors()"
+    />
+    <app-input
+      name="email"
+      [control]="email"
+      label="Email"
+      type="email"
+      [required]="true"
+      [errors]="getErrors(email)"
+      [showErrors]="showErrors()"
+    />
+    <app-input
+      name="password"
+      [control]="password"
+      label="Password"
+      type="password"
+      [required]="true"
+      [errors]="getErrors(password)"
+      [showErrors]="showErrors()"
+    />
+    <div class="agreements">
+      <app-checkbox
+        name="terms"
+        [control]="terms"
+        label="Agree to terms"
+        [errors]="getErrors(terms)"
+        [showErrors]="showErrors()"
+      />
+    </div>
+    <app-button label="Sign Up" type="primary" size="large" [fullWidth]="true" />
+  </form>
+  <a class="redirect" routerLink="/auth/login"> Already have an account? </a>
+</section>

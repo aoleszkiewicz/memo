@@ -1,12 +1,16 @@
-import { NgClass } from "@angular/common";
+import { NgClass, NgStyle } from "@angular/common";
 import { Component, input } from "@angular/core";
 
 @Component({
   selector: "app-button",
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, NgStyle],
   template: `
-    <button [ngClass]="[size(), type()]" [class.icon-only]="iconOnly()">
+    <button
+      [ngClass]="[size(), type()]"
+      [class.icon-only]="iconOnly()"
+      [ngStyle]="{ width: fullWidth() ? '100%' : 'fit-content' }"
+    >
       @if (icon()) {
         <i class="pi" [ngClass]="icon()"></i>
       }
@@ -24,7 +28,6 @@ import { Component, input } from "@angular/core";
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        width: fit-content;
         height: fit-content;
         border: 0;
         gap: 0.5rem;
@@ -102,4 +105,5 @@ export class ButtonComponent {
   size = input<"small" | "medium" | "large">("medium");
   type = input<"primary" | "secondary" | "cancel" | "destructive">("secondary");
   iconOnly = input<boolean>(false);
+  fullWidth = input<boolean>(false);
 }

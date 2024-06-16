@@ -1,0 +1,26 @@
+<section class="login">
+  <h3>Welcome back!</h3>
+  <div class="divider"></div>
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+    <app-input
+      name="email"
+      [control]="email"
+      label="Email"
+      type="email"
+      [required]="true"
+      [errors]="getErrors(email)"
+      [showErrors]="showErrors()"
+    />
+    <app-input
+      name="password"
+      [control]="password"
+      label="Password"
+      type="password"
+      [required]="true"
+      [errors]="getErrors(password)"
+      [showErrors]="showErrors()"
+    />
+    <app-button label="Login" type="primary" size="large" [fullWidth]="true" />
+  </form>
+  <a class="redirect" routerLink="/auth/signup"> Don't have account yet? </a>
+</section>

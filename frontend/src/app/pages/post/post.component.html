@@ -1,12 +1,7 @@
 <section class="post">
   @if (post$ | async; as post) {
     <div class="post-content">
-      <app-button
-        label="Posts"
-        icon="pi-arrow-left"
-        type="primary"
-        [routerLink]="['/']"
-      ></app-button>
+      <app-button label="Posts" icon="pi-arrow-left" type="primary" routerLink="/posts" />
       <h2>{{ post.attributes.title }}</h2>
       @if (post.attributes.description) {
         <p>{{ post.attributes.description }}</p>

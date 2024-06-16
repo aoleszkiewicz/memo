@@ -2,7 +2,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { NgxsModule, Store } from "@ngxs/store";
 
-import { PostService } from "../../core/services/post.service";
+import { PostService } from "../../core/services/post/post.service";
 import { Post, PostState } from "../../core/state/post";
 import { PostsComponent } from "./posts.component";
 

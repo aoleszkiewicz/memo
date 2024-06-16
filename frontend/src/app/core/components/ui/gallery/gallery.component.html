@@ -6,18 +6,8 @@
   }
 </div>
 
-<app-button
-  (click)="prev()"
-  icon="pi-chevron-left"
-  class="gallery-prev"
-  [iconOnly]="true"
-></app-button>
-<app-button
-  (click)="next()"
-  icon="pi-chevron-right"
-  class="gallery-next"
-  [iconOnly]="true"
-></app-button>
+<app-button (click)="prev()" icon="pi-chevron-left" class="gallery-prev" [iconOnly]="true" />
+<app-button (click)="next()" icon="pi-chevron-right" class="gallery-next" [iconOnly]="true" />
 
 <nav>
   @for (image of images().data; track image.id; let index = $index) {

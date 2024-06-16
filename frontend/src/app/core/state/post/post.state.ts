@@ -3,7 +3,7 @@ import { inject, Injectable } from "@angular/core";
 import { Action, Selector, State, StateContext, StateToken } from "@ngxs/store";
 import { catchError, EMPTY, tap } from "rxjs";
 
-import { PostService } from "../../services/post.service";
+import { PostService } from "../../services/post/post.service";
 import { Post } from "./post.actions";
 import { PostStateModel } from "./post.state-model";
 
