@@ -2,8 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { map, Observable } from "rxjs";
 
-import { environment } from "../../../../environments/environment";
 import { Post, Response, SnapshotPost } from "../../types";
+import { environment } from "@environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -36,5 +36,9 @@ export class PostService {
         },
       })
       .pipe(map((posts) => posts.data[0]));
+  }
+
+  addPost(post: Post): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/posts`, post);
   }
 }

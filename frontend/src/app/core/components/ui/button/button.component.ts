@@ -1,15 +1,18 @@
 import { NgClass, NgStyle } from "@angular/common";
 import { Component, input } from "@angular/core";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-button",
   standalone: true,
-  imports: [NgClass, NgStyle],
+  imports: [NgClass, NgStyle, RouterLink],
   template: `
     <button
-      [ngClass]="[size(), type()]"
+      [ngClass]="[size(), type(), disabled() ? 'disabled' : '']"
       [class.icon-only]="iconOnly()"
       [ngStyle]="{ width: fullWidth() ? '100%' : 'fit-content' }"
+      [disabled]="disabled()"
+      [routerLink]="redirectTo()"
     >
       @if (icon()) {
         <i class="pi" [ngClass]="icon()"></i>
@@ -96,6 +99,12 @@ import { Component, input } from "@angular/core";
             font-size: 1.15rem;
           }
         }
+
+        &.disabled {
+          cursor: not-allowed !important;
+          pointer-events: none !important;
+          opacity: 0.5 !important;
+        }
     }
   `,
 })
@@ -106,4 +115,6 @@ export class ButtonComponent {
   type = input<"primary" | "secondary" | "cancel" | "destructive">("secondary");
   iconOnly = input<boolean>(false);
   fullWidth = input<boolean>(false);
+  disabled = input<boolean>(false);
+  redirectTo = input<string>("");
 }

@@ -11,6 +11,11 @@ export const routes: Routes = [
       import("./sign-up/sign-up-page.component").then((m) => m.SignUpPageComponent),
   },
   {
+    path: "secretCode",
+    loadComponent: () =>
+      import("./secretCode/secret-code-page.component").then((m) => m.SecretCodePageComponent),
+  },
+  {
     path: "**",
     redirectTo: "login",
   },
