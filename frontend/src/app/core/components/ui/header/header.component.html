@@ -4,8 +4,8 @@
       <a [routerLink]="item.url" routerLinkActive="active">{{ item.name | titlecase }}</a>
     }
   </nav>
-  @if (!authService.isAuthorized) {
-    <section class="auth-controller">
+  <section class="auth-controller">
+    @if (!authService.isAuthorized) {
       <app-button
         redirectTo="/auth/secretCode"
         label="Login via Code"
@@ -20,6 +20,8 @@
         [disabled]="true"
       />
       <app-button redirectTo="/auth/signup" label="Sign Up" size="large" [disabled]="true" /> -->
-    </section>
-  }
+    } @else {
+      <app-button label="Logout" type="primary" size="large" (click)="authService.logout()" />
+    }
+  </section>
 </header>
